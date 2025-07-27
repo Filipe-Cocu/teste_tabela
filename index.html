@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TabelaWeb</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="icon.png">
+</head>
+<body>
+  <h1>📊 Tabela de Produtos (Google Sheets)</h1>
+  <table id="produtos">
+  <thead>
+    <tr>
+      <th>Código</th>
+      <th>Família</th>
+      <th>Descrição</th>
+      <th>UN/CX - MTS</th>
+      <th>Espessura (mm)</th>
+      <th>Preço 2022</th>
+      <th>Preço Fersi</th>
+      <th>Preço Politejo</th>
+      <th>Preço Sival</th>
+      <th>Kg/mt ou Kg/un</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td colspan="10">A carregar...</td></tr>
+  </tbody>
+</table>
+
+
+  <!-- Scripts -->
+  <script src="https://unpkg.com/tabletop@1.6.4/tabletop.js"></script>
+  <script src="script.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('service-worker.js');
+    }
+  </script>
+</body>
+</html>
