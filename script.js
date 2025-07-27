@@ -27,8 +27,21 @@ function mostrarTabela(dados) {
     tbody.appendChild(linha);
   });
 }
-
 window.addEventListener('DOMContentLoaded', carregarDados);
+
+function filterTable() {
+    let input = document.getElementById('searchInput');
+    let filter = input.value.toLowerCase();
+    let table = document.getElementById('articlesTable');
+    let tr = table.getElementsByTagName('tr');
+
+    for (let i = 1; i < tr.length; i++) {
+        let rowText = tr[i].textContent.toLowerCase();
+        let keywords = filter.split(" ").filter(word => word);
+        let isMatch = keywords.every(keyword => rowText.includes(keyword));
+        tr[i].style.display = isMatch ? '' : 'none';
+    }
+}
 
 /*
 function filterTable() {
