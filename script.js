@@ -102,10 +102,11 @@ function aplicarAjustes() {
 // Comparar preços com a concorrência
 function comparar(valor, base) {
   if (isNaN(valor) || isNaN(base)) return '';
-  if (valor < base) return '<span style="color: red;">🔻</span>';
-  if (valor > base) return '<span style="color: #2e7d32;">🔺</span>'; // verde Materialize mais escuro
-  return '<span style="color: gray;">➡️</span>';
+  if (valor < base) return '<span class="indicador mais-baixo">🔻</span>';
+  if (valor > base) return '<span class="indicador mais-alto">🔺</span>';
+  return '<span class="indicador igual">➡️</span>';
 }
+
 
 // Filtro por palavras-chave
 function filterTable() {
