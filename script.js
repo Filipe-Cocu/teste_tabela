@@ -20,10 +20,10 @@ function mostrarTabela(dados) {
       <td>${item['Descrição Artigo']}</td>
       <td>${item['UN/CX - MTS']}</td>
       <td>${item['Espessuras (mm)']}</td>
-      <td>${item['Preço Tabela 2022']}</td>
-      <td>${item['Preço Tabela Fersil']}</td>
-      <td>${item['Preço tabela Politejo']}</td>
-      <td>${item['Preço Tabela Sival']}</td>
+      <td>${formatarPreco(item['Preço Tabela 2022'])}</td>
+      <td>${formatarPreco(item['Preço Tabela Fersil'])}</td>
+      <td>${formatarPreco(item['Preço tabela Politejo'])}</td>
+      <td>${formatarPreco(item['Preço Tabela Sival'])}</td>
       <td>${item['Kg/mt ou Kg/un']}</td>
     `;
     tbody.appendChild(linha);
