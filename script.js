@@ -102,9 +102,9 @@ function aplicarAjustes() {
 // Comparar preços com a concorrência
 function comparar(valor, base) {
   if (isNaN(valor) || isNaN(base)) return '';
-  if (valor < base) return '<span style="color:red;">🔻</span>';
-  if (valor > base) return '<span style="color:green;">🔺</span>';
-  return '<span style="color:gray;">➡️</span>';
+  if (valor < base) return '<span style="color: red;">🔻</span>';
+  if (valor > base) return '<span style="color: #2e7d32;">🔺</span>'; // verde Materialize mais escuro
+  return '<span style="color: gray;">➡️</span>';
 }
 
 // Filtro por palavras-chave
