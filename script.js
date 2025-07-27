@@ -95,8 +95,10 @@ function ligarEventosAjustes() {
 
 function aplicarAjustes() {
   mostrarTabela(dadosOriginais, true); // mostra com indicadores
-  filterTable();
+  document.getElementById('searchInput').value = ''; // limpa campo
+  filterTable(); // reaplica filtro (agora limpo)
 }
+
 // Comparar preços com a concorrência
 function comparar(valor, base) {
   if (isNaN(valor) || isNaN(base)) return '';
