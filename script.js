@@ -48,14 +48,18 @@ function formatarPreco(valor) {
 }
 
 // Ligar eventos aos inputs de ajuste
-['ajusteFerroplast', 'ajusteFersil', 'ajustePolitejo', 'ajusteSival'].forEach(id => {
-  document.addEventListener('DOMContentLoaded', () => {
+function ligarEventosAjustes() {
+  ['ajusteFerroplast', 'ajusteFersil', 'ajustePolitejo', 'ajusteSival'].forEach(id => {
     const input = document.getElementById(id);
-    input.addEventListener('input', () => {
-      mostrarTabela(dadosOriginais);
-    });
+    if (input) {
+      input.addEventListener('input', () => {
+        mostrarTabela(dadosOriginais);
+        filterTable(); // se quiseres manter filtragem ao aplicar
+      });
+    }
   });
-});
+}
+
 
 // Filtro por palavras-chave
 function filterTable() {
@@ -71,7 +75,11 @@ function filterTable() {
   });
 }
 
-window.addEventListener('DOMContentLoaded', carregarDados);
+window.addEventListener('DOMContentLoaded', () => {
+  carregarDados();
+  ligarEventosAjustes();
+});
+
 /*
 function filterTable() {
         let input = document.getElementById('searchInput');
