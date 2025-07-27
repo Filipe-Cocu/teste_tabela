@@ -33,7 +33,7 @@ function mostrarTabela(dados) {
       <td>${formatarPreco(comDesconto(item['Preço Tabela Fersil'], 'ajusteFersil'))}</td>
       <td>${formatarPreco(comDesconto(item['Preço tabela Politejo'], 'ajustePolitejo'))}</td>
       <td>${formatarPreco(comDesconto(item['Preço Tabela Sival'], 'ajusteSival'))}</td>
-      <td>${item['Kg/mt ou Kg/un']}</td>
+      <td>${formatarKg(item['Kg/mt ou Kg/un'])}</td>
     `;
     tbody.appendChild(linha);
   });
@@ -65,6 +65,13 @@ function formatarPreco(valor) {
   if (typeof valor !== 'number' || isNaN(valor)) return '-';
   return valor.toFixed(2).replace('.', ',') + ' €';
 }
+//Formatar com 3 casas decimais 
+function formatarKg(valor) {
+  const num = parseFloat(valor.toString().replace(',', '.'));
+  if (isNaN(num)) return valor;
+  return num.toFixed(3).replace('.', ',');
+}
+
 
 // Ligar eventos aos inputs de ajuste
 function ligarEventosAjustes() {
