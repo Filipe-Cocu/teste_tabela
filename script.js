@@ -31,17 +31,16 @@ function mostrarTabela(dados) {
 }
 // Função de filtro
 function filterTable() {
-    let input = document.getElementById('searchInput');
-    let filter = input.value.toLowerCase();
-    let table = document.getElementById('articlesTable');
-    let tr = table.getElementsByTagName('tr');
+  const input = document.getElementById('searchInput');
+  const filter = input.value.toLowerCase();
+  const rows = document.querySelectorAll('#articlesTable tbody tr');
 
-    for (let i = 1; i < tr.length; i++) {
-        let rowText = tr[i].textContent.toLowerCase();
-        let keywords = filter.split(" ").filter(word => word);
-        let isMatch = keywords.every(keyword => rowText.includes(keyword));
-        tr[i].style.display = isMatch ? '' : 'none';
-    }
+  rows.forEach(row => {
+    const text = row.textContent.toLowerCase();
+    const keywords = filter.split(" ").filter(word => word);
+    const isMatch = keywords.every(word => text.includes(word));
+    row.style.display = isMatch ? '' : 'none';
+  });
 }
 window.addEventListener('DOMContentLoaded', carregarDados);
 /*
