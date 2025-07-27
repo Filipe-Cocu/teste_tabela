@@ -7,30 +7,34 @@
   <link rel="stylesheet" href="style.css">
   <link rel="manifest" href="manifest.json">
   <link rel="icon" href="icon.png">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
 </head>
 <body>
-  <h1>Tabela de Produtos (Google Sheets)</h1>
-  <input type="text" id="searchInput" onkeyup="filterTable()" placeholder="🔍 Procurar na tabela..." style="margin-bottom: 20px; padding: 8px; width: 300px;">
-  <table id="articlesTable">
-  <thead>
-    <tr>
-      <th>Código</th>
-      <th>Família</th>
-      <th>Descrição</th>
-      <th>UN/CX - MTS</th>
-      <th>Espessura (mm)</th>
-      <th>Preço 2022</th>
-      <th>Preço Fersil</th>
-      <th>Preço Politejo</th>
-      <th>Preço Sival</th>
-      <th>Kg/mt ou Kg/un</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr><td colspan="10">A carregar...</td></tr>
-  </tbody>
-</table>
+  <div class="container">
+    <h1>Tabela de Produtos (Google Sheets)</h1>
+    <input type="text" id="searchInput" onkeyup="filterTable()" placeholder="🔍 Procurar na tabela..." style="margin-bottom: 20px; padding: 8px; width: 300px;">
+    <div class="table-responsive">  
+      <table id="articlesTable"  class="striped highlight centered responsive-table">
+        <thead>
+          <tr>
+          <th>Código</th>
+          <th>Família</th>
+          <th>Descrição</th>
+          <th>UN/CX - MTS</th>
+          <th>Espessura (mm)</th>
+          <th>Preço 2022</th>
+          <th>Preço Fersil</th>
+          <th>Preço Politejo</th>
+          <th>Preço Sival</th>
+          <th>Kg/mt ou Kg/un</th>
+        </tr>
+      </thead>
+      <tbody><tr><td colspan="10">A carregar...</td></tr></tbody>
+    </table>
+  </div>
+</div>
   <!-- Scripts -->  
   <script src="script.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </body>
 </html>
