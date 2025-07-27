@@ -4,8 +4,8 @@ const endpoint = 'https://script.google.com/macros/s/AKfycbwafJ5hprI3LTW00LVeoMV
 // Função para carregar dados da API
 async function carregarDados() {
   const resposta = await fetch(endpoint);
-  const dados = await resposta.json();
-  mostrarTabela(dados);
+  dadosOriginais = dados; // Guardamos os dados originais
+  mostrarTabela(dadosOriginais);
 }
 // Função para gerar dinamicamente a tabela HTML
 function mostrarTabela(dados) {
@@ -29,7 +29,35 @@ function mostrarTabela(dados) {
     tbody.appendChild(linha);
   });
 }
-// Função de filtro
+// Aplica desconto percentual com base no input correspondente
+function comDesconto(valor, inputId) {
+  const input = document.getElementById(inputId);
+  const percentagem = parseFloat(input.value) || 0;
+  const preco = parseFloat(valor.toString().replace(',', '.'));
+
+  if (isNaN(preco)) return valor;
+
+  const ajustado = preco * (1 - percentagem / 100);
+  return ajustado;
+}
+
+// Formata valor como 0,00 €
+function formatarPreco(valor) {
+  if (typeof valor !== 'number' || isNaN(valor)) return '-';
+  return valor.toFixed(2).replace('.', ',') + ' €';
+}
+
+// Ligar eventos aos inputs de ajuste
+['ajusteFerroplast', 'ajusteFersil', 'ajustePolitejo', 'ajusteSival'].forEach(id => {
+  document.addEventListener('DOMContentLoaded', () => {
+    const input = document.getElementById(id);
+    input.addEventListener('input', () => {
+      mostrarTabela(dadosOriginais);
+    });
+  });
+});
+
+// Filtro por palavras-chave
 function filterTable() {
   const input = document.getElementById('searchInput');
   const filter = input.value.toLowerCase();
@@ -41,11 +69,6 @@ function filterTable() {
     const isMatch = keywords.every(word => text.includes(word));
     row.style.display = isMatch ? '' : 'none';
   });
-}
-function formatarPreco(valor) {
-  const num = parseFloat(valor.toString().replace(',', '.'));
-  if (isNaN(num)) return valor;
-  return num.toFixed(2).replace('.', ',') + ' €';
 }
 
 window.addEventListener('DOMContentLoaded', carregarDados);
