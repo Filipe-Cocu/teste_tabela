@@ -9,7 +9,7 @@ async function carregarDados() {
 }
 // Função para gerar dinamicamente a tabela HTML
 function mostrarTabela(dados) {
-  const tbody = document.querySelector('#produtos tbody');
+  const tbody = document.querySelector('#articlesTable tbody');
   tbody.innerHTML = '';
 
   dados.forEach(item => {
