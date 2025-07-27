@@ -2,10 +2,18 @@
 const endpoint = 'https://script.google.com/macros/s/AKfycbwafJ5hprI3LTW00LVeoMVfhb6PxYhydvpb-8QfDJTP69DR7fso3E-F12X-1I1akS7w/exec';
 
 async function carregarDados() {
-  const resposta = await fetch(endpoint);
-  const dados = await resposta.json();
-  mostrarTabela(dados);
+  try {
+    const resposta = await fetch(endpoint);
+    const dados = await resposta.json();
+    dadosOriginais = dados;
+    mostrarTabela(dadosOriginais);
+  } catch (erro) {
+    console.error("Erro ao carregar dados:", erro);
+    const tbody = document.querySelector('#articlesTable tbody');
+    tbody.innerHTML = '<tr><td colspan="10">❌ Erro ao carregar dados</td></tr>';
+  }
 }
+
 
 
 // Função para gerar dinamicamente a tabela HTML
