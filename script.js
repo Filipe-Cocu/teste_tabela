@@ -102,10 +102,15 @@ function aplicarAjustes() {
 // Comparar preços com a concorrência
 function comparar(valor, base) {
   if (isNaN(valor) || isNaN(base)) return '';
-  if (valor < base) return '<i class="material-icons red-text">arrow_downward</i>';
-  if (valor > base) return '<i class="material-icons green-text">arrow_upward</i>';
-  return '<i class="material-icons grey-text">trending_flat</i>';
+  if (valor < base) {
+    return '<i class="material-icons tiny red-text" style="vertical-align: middle;">arrow_downward</i>';
+  }
+  if (valor > base) {
+    return '<i class="material-icons tiny green-text" style="vertical-align: middle;">arrow_upward</i>';
+  }
+  return '<i class="material-icons tiny grey-text" style="vertical-align: middle;">trending_flat</i>';
 }
+
 
 
 // Filtro por palavras-chave
