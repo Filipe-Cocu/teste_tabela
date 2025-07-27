@@ -3,10 +3,10 @@ const endpoint = 'https://script.google.com/macros/s/AKfycbwafJ5hprI3LTW00LVeoMV
 
 async function carregarDados() {
   const resposta = await fetch(endpoint);
-  const dados = await resposta.json(); // esta linha é essencial
-  dadosOriginais = dados; // Guardamos os dados originais
-  mostrarTabela(dadosOriginais);
+  const dados = await resposta.json();
+  mostrarTabela(dados);
 }
+
 
 // Função para gerar dinamicamente a tabela HTML
 function mostrarTabela(dados) {
