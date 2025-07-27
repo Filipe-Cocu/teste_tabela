@@ -42,6 +42,12 @@ function filterTable() {
     row.style.display = isMatch ? '' : 'none';
   });
 }
+function formatarPreco(valor) {
+  const num = parseFloat(valor.toString().replace(',', '.'));
+  if (isNaN(num)) return valor;
+  return num.toFixed(2).replace('.', ',') + ' €';
+}
+
 window.addEventListener('DOMContentLoaded', carregarDados);
 /*
 function filterTable() {
