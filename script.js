@@ -80,10 +80,7 @@ function filterTable() {
   });
 }
 
-window.addEventListener('DOMContentLoaded', () => {
-  carregarDados();
-  ligarEventosAjustes();
-});
+window.addEventListener('DOMContentLoaded', carregarDados);
 
 /*
 function filterTable() {
