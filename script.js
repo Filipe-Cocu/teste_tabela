@@ -1,5 +1,35 @@
 // Código JS futuro (por enquanto vazio)
-console.log("TabelaWeb carregada com sucesso!");
+const endpoint = 'https://script.google.com/a/macros/ferroplast.es/s/AKfycbzZsuhGmp2XB85VvKtkLVJqbEo9oRvZwqrTTefmFC6N6s51Ps5OtVjhKgGCv4rwz5s_/exec';
+async function carregarDados() {
+  const resposta = await fetch(endpoint);
+  const dados = await resposta.json();
+  mostrarTabela(dados);
+}
+
+function mostrarTabela(dados) {
+  const tbody = document.querySelector('#produtos tbody');
+  tbody.innerHTML = '';
+
+  dados.forEach(item => {
+    const linha = document.createElement('tr');
+    linha.innerHTML = `
+      <td>${item['Código Artigo']}</td>
+      <td>${item['Familia desconto']}</td>
+      <td>${item['Descrição Artigo']}</td>
+      <td>${item['UN/CX - MTS']}</td>
+      <td>${item['Espessuras (mm)']}</td>
+      <td>${item['Preço Tabela 2022']}</td>
+      <td>${item['Preço Tabela Fersil']}</td>
+      <td>${item['Preço tabela Politejo']}</td>
+      <td>${item['Preço Tabela Sival']}</td>
+      <td>${item['Kg/mt ou Kg/un']}</td>
+    `;
+    tbody.appendChild(linha);
+  });
+}
+
+window.addEventListener('DOMContentLoaded', carregarDados);
+
 /*
 function filterTable() {
         let input = document.getElementById('searchInput');
