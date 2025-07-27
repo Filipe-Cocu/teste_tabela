@@ -49,6 +49,16 @@ function comDesconto(valor, inputId) {
   const ajustado = preco * (1 - percentagem / 100);
   return ajustado;
 }
+//Limpar descontos
+function resetAjustes() {
+  const ids = ['ajusteFerroplast', 'ajusteFersil', 'ajustePolitejo', 'ajusteSival'];
+  ids.forEach(id => {
+    const input = document.getElementById(id);
+    if (input) input.value = '';
+  });
+  mostrarTabela(dadosOriginais);
+  filterTable();
+}
 
 // Formata valor como 0,00 €
 function formatarPreco(valor) {
