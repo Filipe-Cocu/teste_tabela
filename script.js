@@ -17,11 +17,16 @@ async function carregarDados() {
 
 
 // Função para gerar dinamicamente a tabela HTML
-function mostrarTabela(dados) {
+function mostrarTabela(dados, comIndicadores = false) {
   const tbody = document.querySelector('#articlesTable tbody');
   tbody.innerHTML = '';
 
   dados.forEach(item => {
+    const precoBase = comDesconto(item['Preço Tabela 2022'], 'ajusteFerroplast');
+    const precoFersil = comDesconto(item['Preço Tabela Fersil'], 'ajusteFersil');
+    const precoPolitejo = comDesconto(item['Preço tabela Politejo'], 'ajustePolitejo');
+    const precoSival = comDesconto(item['Preço Tabela Sival'], 'ajusteSival');
+
     const linha = document.createElement('tr');
     linha.innerHTML = `
       <td>${item['Código Artigo']}</td>
@@ -29,15 +34,16 @@ function mostrarTabela(dados) {
       <td>${item['Descrição Artigo']}</td>
       <td>${item['UN/CX - MTS']}</td>
       <td>${item['Espessuras (mm)']}</td>
-      <td>${formatarPreco(comDesconto(item['Preço Tabela 2022'], 'ajusteFerroplast'))}</td>
-      <td>${formatarPreco(comDesconto(item['Preço Tabela Fersil'], 'ajusteFersil'))}</td>
-      <td>${formatarPreco(comDesconto(item['Preço tabela Politejo'], 'ajustePolitejo'))}</td>
-      <td>${formatarPreco(comDesconto(item['Preço Tabela Sival'], 'ajusteSival'))}</td>
+      <td>${formatarPreco(precoBase)}</td>
+      <td>${formatarPreco(precoFersil)} ${comIndicadores ? comparar(precoFersil, precoBase) : ''}</td>
+      <td>${formatarPreco(precoPolitejo)} ${comIndicadores ? comparar(precoPolitejo, precoBase) : ''}</td>
+      <td>${formatarPreco(precoSival)} ${comIndicadores ? comparar(precoSival, precoBase) : ''}</td>
       <td>${formatarKg(item['Kg/mt ou Kg/un'])}</td>
     `;
     tbody.appendChild(linha);
   });
 }
+
 // Aplica desconto percentual com base no input correspondente
 function comDesconto(valor, inputId) {
   const input = document.getElementById(inputId);
@@ -56,9 +62,10 @@ function resetAjustes() {
     const input = document.getElementById(id);
     if (input) input.value = '';
   });
-  mostrarTabela(dadosOriginais);
+  mostrarTabela(dadosOriginais, false); // sem indicadores
   filterTable();
 }
+
 
 // Formata valor como 0,00 €
 function formatarPreco(valor) {
@@ -87,9 +94,10 @@ function ligarEventosAjustes() {
 }
 
 function aplicarAjustes() {
-  mostrarTabela(dadosOriginais);
-  filterTable(); // mantém filtragem ativa
+  mostrarTabela(dadosOriginais, true); // mostra com indicadores
+  filterTable();
 }
+
 
 // Filtro por palavras-chave
 function filterTable() {
