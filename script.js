@@ -102,9 +102,9 @@ function aplicarAjustes() {
 // Comparar preços com a concorrência
 function comparar(valor, base) {
   if (isNaN(valor) || isNaN(base)) return '';
-  if (valor < base) return '<span class="indicador mais-baixo">🔻</span>';
-  if (valor > base) return '<span class="indicador mais-alto">🔺</span>';
-  return '<span class="indicador igual">➡️</span>';
+  if (valor < base) return '<i class="material-icons red-text">arrow_downward</i>';
+  if (valor > base) return '<i class="material-icons green-text">arrow_upward</i>';
+  return '<i class="material-icons grey-text">trending_flat</i>';
 }
 
 
