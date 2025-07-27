@@ -28,11 +28,12 @@ th {
 }
 
 .indicador.mais-alto {
-  color: #2e7d32;
+  color: #2e7d32 !important; /* Verde Materialize escuro com !important para garantir aplicação */
 }
 .indicador.mais-baixo {
-  color: red;
+  color: red !important;
 }
 .indicador.igual {
-  color: gray;
+  color: gray !important;
 }
+
