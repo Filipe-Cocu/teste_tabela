@@ -16,25 +16,27 @@
   <div class="input-field col s12 m8 l6">
     <input type="text" id="searchInput" onkeyup="filterTable()" placeholder="🔍 Procurar..." class="validate">
   </div>
-  <div class="col s12 m4 l6 right-align">
-    <button class="btn waves-effect blue" onclick="aplicarAjustes()">Aplicar ajustes</button>
-  </div>
+<div class="col s12 m4 l6 right-align">
+  <button class="btn waves-effect blue" onclick="aplicarAjustes()">Aplicar</button>
+  <button class="btn grey lighten-1 black-text" onclick="resetAjustes()" style="margin-left: 10px;">Limpar</button>
+</div>
+
 </div>
     <div id="filtros-preco" class="row">
       <div class="input-field col s6 m3">
-        <input type="number" id="ajusteFerroplast" placeholder="Preço Ferroplast">
+        <input type="number" id="ajusteFerroplast" placeholder="Desconto">
         <label for="ajuste2022">Ferroplast</label>
     </div>
     <div class="input-field col s6 m3">
-      <input type="number" id="ajusteFersil" placeholder="Preço Fersil">
+      <input type="number" id="ajusteFersil" placeholder="Desconto">
       <label for="ajusteFersi">Fersil</label>
     </div>
     <div class="input-field col s6 m3">
-      <input type="number" id="ajustePolitejo" placeholder="Politejo">
+      <input type="number" id="ajustePolitejo" placeholder="Desconto">
       <label for="ajustePolitejo">Politejo</label>
     </div>
     <div class="input-field col s6 m3">
-      <input type="number" id="ajusteSival" placeholder="Sival">
+      <input type="number" id="ajusteSival" placeholder="Desconto">
       <label for="ajusteSival">Sival</label>
     </div>    
   </div>
