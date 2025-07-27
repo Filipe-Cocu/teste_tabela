@@ -27,3 +27,12 @@ th {
   -webkit-overflow-scrolling: touch;
 }
 
+.indicador.mais-alto {
+  color: #2e7d32;
+}
+.indicador.mais-baixo {
+  color: red;
+}
+.indicador.igual {
+  color: gray;
+}
