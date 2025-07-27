@@ -1,11 +1,13 @@
 // Código JS futuro (por enquanto vazio)
 const endpoint = 'https://script.google.com/macros/s/AKfycbwafJ5hprI3LTW00LVeoMVfhb6PxYhydvpb-8QfDJTP69DR7fso3E-F12X-1I1akS7w/exec';
+
+// Função para carregar dados da API
 async function carregarDados() {
   const resposta = await fetch(endpoint);
   const dados = await resposta.json();
   mostrarTabela(dados);
 }
-
+// Função para gerar dinamicamente a tabela HTML
 function mostrarTabela(dados) {
   const tbody = document.querySelector('#produtos tbody');
   tbody.innerHTML = '';
@@ -27,8 +29,7 @@ function mostrarTabela(dados) {
     tbody.appendChild(linha);
   });
 }
-window.addEventListener('DOMContentLoaded', carregarDados);
-
+// Função de filtro
 function filterTable() {
     let input = document.getElementById('searchInput');
     let filter = input.value.toLowerCase();
@@ -42,7 +43,7 @@ function filterTable() {
         tr[i].style.display = isMatch ? '' : 'none';
     }
 }
-
+window.addEventListener('DOMContentLoaded', carregarDados);
 /*
 function filterTable() {
         let input = document.getElementById('searchInput');
