@@ -97,7 +97,13 @@ function aplicarAjustes() {
   mostrarTabela(dadosOriginais, true); // mostra com indicadores
   filterTable();
 }
-
+// Comparar preços com a concorrência
+function comparar(valor, base) {
+  if (isNaN(valor) || isNaN(base)) return '';
+  if (valor < base) return '<span style="color:red;">🔻</span>';
+  if (valor > base) return '<span style="color:green;">🔺</span>';
+  return '<span style="color:gray;">➡️</span>';
+}
 
 // Filtro por palavras-chave
 function filterTable() {
