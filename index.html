@@ -12,7 +12,14 @@
 <body>
   <div class="container">
     <h1>Tabela de Produtos Ferroplast</h1>
-    <input type="text" id="searchInput" onkeyup="filterTable()" placeholder="🔍 Procurar na tabela..." style="margin-bottom: 20px; padding: 8px; width: 300px;">
+    <div class="row valign-wrapper" style="margin-bottom: 20px;">
+  <div class="input-field col s12 m8 l6">
+    <input type="text" id="searchInput" onkeyup="filterTable()" placeholder="🔍 Procurar..." class="validate">
+  </div>
+  <div class="col s12 m4 l6 right-align">
+    <button class="btn waves-effect blue" onclick="aplicarAjustes()">Aplicar ajustes</button>
+  </div>
+</div>
     <div id="filtros-preco" class="row">
       <div class="input-field col s6 m3">
         <input type="number" id="ajusteFerroplast" placeholder="Preço Ferroplast">
@@ -29,10 +36,7 @@
     <div class="input-field col s6 m3">
       <input type="number" id="ajusteSival" placeholder="Sival">
       <label for="ajusteSival">Sival</label>
-    </div>
-    <div class="col s12 m4 right-align" style="margin-top: 20px;">
-      <button class="btn waves-effect blue" onclick="aplicarAjustes()">Aplicar ajustes</button>
-    </div>
+    </div>    
   </div>
     <div class="table-wrapper">  
       <table id="articlesTable" class="striped highlight centered">
