@@ -1,5 +1,9 @@
 // Código JS futuro (por enquanto vazio)
 const endpoint = 'https://script.google.com/macros/s/AKfycbwafJ5hprI3LTW00LVeoMVfhb6PxYhydvpb-8QfDJTP69DR7fso3E-F12X-1I1akS7w/exec';
+let dadosOriginais = [];
+let paginaAtual = 1;
+const linhasPorPagina = 20;
+
 
 async function carregarDados() {
   try {
@@ -21,7 +25,11 @@ function mostrarTabela(dados, comIndicadores = false) {
   const tbody = document.querySelector('#articlesTable tbody');
   tbody.innerHTML = '';
 
-  dados.forEach(item => {
+  const inicio = (paginaAtual - 1) * linhasPorPagina;
+  const fim = inicio + linhasPorPagina;
+  const dadosPaginados = dados.slice(inicio, fim);
+
+  dadosPaginados.forEach(item => {
     const precoBase = comDesconto(item['Preço Tabela 2022'], 'ajusteFerroplast');
     const precoFersil = comDesconto(item['Preço Tabela Fersil'], 'ajusteFersil');
     const precoPolitejo = comDesconto(item['Preço tabela Politejo'], 'ajustePolitejo');
@@ -42,7 +50,44 @@ function mostrarTabela(dados, comIndicadores = false) {
     `;
     tbody.appendChild(linha);
   });
+  mostrarPaginacao(dados);
 }
+
+function mostrarPaginacao(dados) {
+  const paginacaoDiv = document.getElementById('paginacao');
+  if (!paginacaoDiv) return;
+
+  const totalPaginas = Math.ceil(dados.length / linhasPorPagina);
+  paginacaoDiv.innerHTML = '';
+
+  if (totalPaginas <= 1) return;
+
+  if (paginaAtual > 1) {
+    const btnAnterior = document.createElement('button');
+    btnAnterior.textContent = 'Anterior';
+    btnAnterior.className = 'btn-small';
+    btnAnterior.onclick = () => {
+      paginaAtual--;
+      mostrarTabela(dados, true);
+      filterTable();
+    };
+    paginacaoDiv.appendChild(btnAnterior);
+  }
+
+  if (paginaAtual < totalPaginas) {
+    const btnProxima = document.createElement('button');
+    btnProxima.textContent = 'Próxima';
+    btnProxima.className = 'btn-small';
+    btnProxima.style.marginLeft = '10px';
+    btnProxima.onclick = () => {
+      paginaAtual++;
+      mostrarTabela(dados, true);
+      filterTable();
+    };
+    paginacaoDiv.appendChild(btnProxima);
+  }
+}
+
 
 // Aplica desconto percentual com base no input correspondente
 function comDesconto(valor, inputId) {
