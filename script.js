@@ -95,10 +95,8 @@ function ligarEventosAjustes() {
 
 function aplicarAjustes() {
   mostrarTabela(dadosOriginais, true); // mostra com indicadores
-  document.getElementById('searchInput').value = ''; // limpa campo
-  filterTable(); // reaplica filtro (agora limpo)
+  setTimeout(filterTable, 0); // reaplica filtro (sem limpar o campo!)
 }
-
 
 // Comparar preços com a concorrência
 function comparar(valor, base) {
